@@ -21,14 +21,25 @@ return `
     `
 
 }
+const filtrar = (usuario) => {
+    const filtro = document.getElementById('filtro')
+    return usuario.name.toUpperCase().include(filtro.value)
+}
 const construir_tabela = async () => {
+
+    const filtro = document.getElementById('filtro')
    
     const usuarios = await buscarusuarios();
      
     const content = document.getElementById('content');
 
-    const usuariosHTML = usuarios.map(usuarioToRowHTML)
+    const usuariosHTML = usuarios.filter(filtrar).map(usuarioToRowHTML)
     
     usuariosHTML.forEach((elementoHTML) => content.innerHTML += elementoHTML)
+}
+
+
+const onFiltro = () => {
+    const filtro = document.getElementById('filtro')
 }
 
